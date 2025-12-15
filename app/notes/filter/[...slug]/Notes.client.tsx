@@ -73,10 +73,10 @@ const [searchQuery, setSearchQuery]=useState<string>('')
 
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error loading notes</p>}
-      {isSuccess && data?.notes.length === 0}
-
-      {data && !isLoading && <NoteList notes={data.notes} />}
-
+      {!isLoading && data?.notes.length === 0 && (
+  <p>No notes found</p>
+)}
+   {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
       {isOpenModal && (
         <Modal onClose={closeModal}>
           <NoteForm onClose={closeModal} />{' '}
